@@ -85,6 +85,7 @@ const optionsEl = document.getElementById("options");
 const nextBtn = document.getElementById("next-btn");
 const resultEl = document.getElementById("result");
 const scoreEl = document.getElementById("score");
+const quizContainer = document.getElementById("quiz-container");
 
 function embaralharArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -97,6 +98,7 @@ function mostrarPergunta() {
   const p = perguntas[perguntaAtual];
   questionEl.textContent = p.pergunta;
   optionsEl.innerHTML = "";
+  nextBtn.disabled = true;
 
   p.opcoes.forEach((opcao, index) => {
     const btn = document.createElement("button");
@@ -104,8 +106,6 @@ function mostrarPergunta() {
     btn.onclick = () => selecionarOpcao(btn, index);
     optionsEl.appendChild(btn);
   });
-
-  nextBtn.disabled = true;
 }
 
 function selecionarOpcao(botao, index) {
@@ -132,7 +132,7 @@ nextBtn.onclick = () => {
 };
 
 function mostrarResultado() {
-  document.getElementById("quiz-container").classList.add("hidden");
+  quizContainer.classList.add("hidden");
   resultEl.classList.remove("hidden");
   scoreEl.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas.`;
 }
@@ -141,12 +141,12 @@ function restartQuiz() {
   perguntaAtual = 0;
   pontuacao = 0;
   selecionada = null;
-  resultEl.classList.add("hidden");
-  document.getElementById("quiz-container").classList.remove("hidden");
   embaralharArray(perguntas);
+  resultEl.classList.add("hidden");
+  quizContainer.classList.remove("hidden");
   mostrarPergunta();
 }
 
-// Iniciar com perguntas embaralhadas
+// Início do quiz
 embaralharArray(perguntas);
 mostrarPergunta();
