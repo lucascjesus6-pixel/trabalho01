@@ -3,24 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quebrando o Silêncio</title>
+  <title>Jogo: Violência Contra a Mulher</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="header-banner">
-    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Telefone" />
-    <span>Denuncie! Disque 180</span>
-  </div>
-
   <div class="container">
-    <h1>Quebrando o Silêncio</h1>
-    <p id="question-text">Carregando pergunta...</p>
-    <div id="choices"></div>
-    <p id="feedback"></p>
-    <p id="score">Pontuação: 0</p>
-    <button id="next-button" onclick="nextQuestion()" style="display:none;">Próxima</button>
+    <h1>Jogo Educativo: Violência Contra a Mulher</h1>
+    <div id="quiz-container">
+      <div id="question"></div>
+      <div id="options"></div>
+      <button id="next-btn">Próxima</button>
+    </div>
+    <div id="result" class="hidden">
+      <h2>Resultado Final</h2>
+      <p id="score"></p>
+      <button onclick="restartQuiz()">Recomeçar</button>
+    </div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
