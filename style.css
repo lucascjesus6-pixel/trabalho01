@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: url('https://i.imgur.com/MTK7OHG.jpg') no-repeat center center fixed;
+  background: url('https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
   background-size: cover;
   margin: 0;
   padding: 0;
@@ -76,13 +76,22 @@ h1 {
 
 footer {
   text-align: center;
-  margin-top: 40px;
+  margin: 40px auto 20px;
   color: #880e4f;
   font-weight: bold;
   font-size: 1.1em;
+  max-width: 700px;
 }
 
-/* ESSENCIAL: Classe para esconder elementos */
+footer a {
+  display: block;
+  margin-top: 10px;
+  font-weight: normal;
+  color: #b71c1c;
+  text-decoration: underline;
+}
+
+/* Classe essencial */
 .hidden {
   display: none;
 }
