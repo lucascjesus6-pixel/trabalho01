@@ -145,4 +145,53 @@ const questions = [
   }
 ];
 
-let currentQuestion =
+let currentQuestion = 0;
+let score = 0;
+
+function showQuestion() {
+  const q = questions[currentQuestion];
+  document.getElementById("question-text").textContent = `(${q.type}) ${q.text}`;
+  const choicesDiv = document.getElementById("choices");
+  choicesDiv.innerHTML = "";
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("next-button").style.display = "none";
+
+  q.choices.forEach((choice, index) => {
+    const btn = document.createElement("button");
+    btn.textContent = choice.text;
+    btn.onclick = () => handleChoice(choice.score);
+    choicesDiv.appendChild(btn);
+  });
+}
+
+function handleChoice(scoreChange) {
+  score += scoreChange;
+  const feedback = document.getElementById("feedback");
+  if (scoreChange === 1) {
+    feedback.textContent = "Boa escolha! Você está salvando vidas.";
+    feedback.style.color = "green";
+  } else if (scoreChange === -1) {
+    feedback.textContent = "Essa atitude pode colocar a vítima em risco.";
+    feedback.style.color = "red";
+  } else {
+    feedback.textContent = "Você poderia ter feito mais.";
+    feedback.style.color = "orange";
+  }
+
+  document.getElementById("score").textContent = `Pontuação: ${score}`;
+  document.getElementById("next-button").style.display = "block";
+  document.querySelectorAll("#choices button").forEach(btn => btn.disabled = true);
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    showQuestion();
+  } else {
+    document.getElementById("question-text").textContent = "Fim do jogo. Obrigado por participar!";
+    document.getElementById("choices").innerHTML = "";
+    document.getElementById("next-button").style.display = "none";
+  }
+}
+
+window.onload = showQuestion;
