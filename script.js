@@ -1,197 +1,142 @@
-const questions = [
-  // Física
+const perguntas = [
   {
-    type: "Física",
-    text: "Você vê sua vizinha com hematomas novamente. Ela diz que caiu da escada, mas parece nervosa.",
-    choices: [
-      { text: "Ligar para a polícia anonimamente", score: 1 },
-      { text: "Não se envolver", score: 0 },
-      { text: "Confrontar o agressor diretamente", score: -1 }
-    ]
+    pergunta: "1. Um parceiro controla com quem a mulher fala, onde vai e até o que veste. Qual tipo de violência é essa?",
+    opcoes: ["Física", "Moral", "Psicológica"],
+    correta: 2
   },
   {
-    type: "Física",
-    text: "Sua prima chega com marcas no braço. Ela diz: 'foi só um empurrão'.",
-    choices: [
-      { text: "Oferecer ajuda e falar sobre apoio jurídico", score: 1 },
-      { text: "Apenas escutar e não opinar", score: 0 },
-      { text: "Fingir que não viu nada", score: -1 }
-    ]
+    pergunta: "2. A mulher foi forçada a manter relações sexuais mesmo sem consentimento. Qual o tipo de violência?",
+    opcoes: ["Sexual", "Psicológica", "Patrimonial"],
+    correta: 0
   },
   {
-    type: "Física",
-    text: "Você escuta gritos e barulhos de agressão no apartamento ao lado à noite.",
-    choices: [
-      { text: "Ligar 180 e relatar o que ouviu", score: 1 },
-      { text: "Ignorar, é briga de casal", score: -1 },
-      { text: "Bater na porta para interromper", score: 0 }
-    ]
-  },
-
-  // Psicológica
-  {
-    type: "Psicológica",
-    text: "Sua colega de trabalho ouve frases como 'ninguém vai te querer' do parceiro dela.",
-    choices: [
-      { text: "Falar com ela sobre relacionamentos abusivos", score: 1 },
-      { text: "Fazer piada com a situação", score: -1 },
-      { text: "Ignorar, não é sua função", score: 0 }
-    ]
+    pergunta: "3. Destruição de documentos pessoais da mulher configura:",
+    opcoes: ["Moral", "Física", "Patrimonial"],
+    correta: 2
   },
   {
-    type: "Psicológica",
-    text: "Ela conta que o parceiro controla tudo o que ela veste e quem ela vê.",
-    choices: [
-      { text: "Ajudar a identificar isso como abuso", score: 1 },
-      { text: "Dizer que isso é cuidado", score: -1 },
-      { text: "Aconselhar ela a aceitar para evitar brigas", score: 0 }
-    ]
+    pergunta: "4. O agressor expõe fotos íntimas da vítima sem consentimento. Qual tipo de violência?",
+    opcoes: ["Sexual", "Moral", "Física"],
+    correta: 1
   },
   {
-    type: "Psicológica",
-    text: "Ela vive com medo e ansiedade quando o marido chega em casa.",
-    choices: [
-      { text: "Encaminhá-la a um psicólogo", score: 1 },
-      { text: "Dizer que é normal estar com medo às vezes", score: 0 },
-      { text: "Sugere que ela reze para melhorar", score: -1 }
-    ]
-  },
-
-  // Sexual
-  {
-    type: "Sexual",
-    text: "Ela diz que o parceiro insiste em relações mesmo quando ela não quer.",
-    choices: [
-      { text: "Explicar que isso é estupro conjugal", score: 1 },
-      { text: "Dizer que é 'obrigação de esposa'", score: -1 },
-      { text: "Dizer que ela deveria conversar com ele", score: 0 }
-    ]
+    pergunta: "5. A mulher é agredida com socos e pontapés. Que tipo de violência é essa?",
+    opcoes: ["Física", "Psicológica", "Sexual"],
+    correta: 0
   },
   {
-    type: "Sexual",
-    text: "Ela contou que ele compartilhou fotos íntimas dela sem permissão.",
-    choices: [
-      { text: "Incentivar a denúncia na delegacia", score: 1 },
-      { text: "Dizer que ela deveria ter cuidado com as fotos", score: -1 },
-      { text: "Não opinar", score: 0 }
-    ]
+    pergunta: "6. A vítima é ridicularizada, chamada de inútil e burra constantemente. Tipo de violência?",
+    opcoes: ["Patrimonial", "Psicológica", "Física"],
+    correta: 1
   },
   {
-    type: "Sexual",
-    text: "Ela foi drogada e abusada em uma festa.",
-    choices: [
-      { text: "Levá-la ao hospital e ajudar na denúncia", score: 1 },
-      { text: "Perguntar se ela tem certeza do que aconteceu", score: -1 },
-      { text: "Sugerir esquecer o ocorrido", score: 0 }
-    ]
-  },
-
-  // Patrimonial
-  {
-    type: "Patrimonial",
-    text: "O parceiro dela vendeu seu celular sem avisar.",
-    choices: [
-      { text: "Dizer que ela tem direito de reaver seus bens", score: 1 },
-      { text: "Dizer que é só um celular", score: 0 },
-      { text: "Ficar do lado dele", score: -1 }
-    ]
+    pergunta: "7. O parceiro se recusa a dar dinheiro para necessidades básicas. Qual o tipo?",
+    opcoes: ["Sexual", "Moral", "Patrimonial"],
+    correta: 2
   },
   {
-    type: "Patrimonial",
-    text: "Ele controla todo o dinheiro e não deixa ela trabalhar.",
-    choices: [
-      { text: "Ajudar ela a buscar autonomia financeira", score: 1 },
-      { text: "Dizer que isso é o normal em casamentos", score: -1 },
-      { text: "Falar para ela economizar escondido", score: 0 }
-    ]
+    pergunta: "8. A mulher é impedida de estudar ou trabalhar. Que tipo de violência isso representa?",
+    opcoes: ["Psicológica", "Patrimonial", "Moral"],
+    correta: 1
   },
   {
-    type: "Patrimonial",
-    text: "Ele destrói objetos dela quando discutem.",
-    choices: [
-      { text: "Isso é crime, deve ser denunciado", score: 1 },
-      { text: "Pelo menos ele não bate nela", score: -1 },
-      { text: "Ela deve tentar acalmar ele", score: 0 }
-    ]
-  },
-
-  // Moral
-  {
-    type: "Moral",
-    text: "Ele a xinga e humilha publicamente com frequência.",
-    choices: [
-      { text: "Isso é violência moral, oriente ela a denunciar", score: 1 },
-      { text: "Fingir que não ouviu", score: 0 },
-      { text: "Rir da situação", score: -1 }
-    ]
+    pergunta: "9. A mulher é forçada a engravidar contra sua vontade.",
+    opcoes: ["Sexual", "Física", "Psicológica"],
+    correta: 0
   },
   {
-    type: "Moral",
-    text: "Ele espalha mentiras sobre ela nas redes sociais.",
-    choices: [
-      { text: "Apoiar a busca por um boletim de ocorrência", score: 1 },
-      { text: "Ignorar porque é 'drama'", score: -1 },
-      { text: "Compartilhar para ver a fofoca", score: -1 }
-    ]
+    pergunta: "10. O agressor acusa a mulher de traição sem provas, com humilhações públicas.",
+    opcoes: ["Moral", "Sexual", "Física"],
+    correta: 0
   },
   {
-    type: "Moral",
-    text: "Ele a chama de 'louca', 'burra' e a desmoraliza diante da família.",
-    choices: [
-      { text: "Orientar a procurar ajuda legal e psicológica", score: 1 },
-      { text: "Ficar neutro", score: 0 },
-      { text: "Dizer que ela merece ouvir a verdade", score: -1 }
-    ]
+    pergunta: "11. A mulher é ameaçada de morte caso o denuncie. Isso é:",
+    opcoes: ["Psicológica", "Sexual", "Moral"],
+    correta: 0
+  },
+  {
+    pergunta: "12. Rasgar roupas da vítima é um ato de violência:",
+    opcoes: ["Física", "Sexual", "Patrimonial"],
+    correta: 2
+  },
+  {
+    pergunta: "13. Gravar áudios íntimos sem consentimento é considerado violência:",
+    opcoes: ["Psicológica", "Sexual", "Moral"],
+    correta: 1
+  },
+  {
+    pergunta: "14. Espalhar mentiras sobre a reputação da vítima é violência:",
+    opcoes: ["Física", "Moral", "Psicológica"],
+    correta: 1
+  },
+  {
+    pergunta: "15. Impedir a mulher de sair de casa ou trancar portas é violência:",
+    opcoes: ["Sexual", "Física", "Psicológica"],
+    correta: 2
   }
 ];
 
-let currentQuestion = 0;
-let score = 0;
+let perguntaAtual = 0;
+let pontuacao = 0;
+let selecionada = null;
 
-function showQuestion() {
-  const q = questions[currentQuestion];
-  document.getElementById("question-text").textContent = `(${q.type}) ${q.text}`;
-  const choicesDiv = document.getElementById("choices");
-  choicesDiv.innerHTML = "";
-  document.getElementById("feedback").textContent = "";
-  document.getElementById("next-button").style.display = "none";
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const nextBtn = document.getElementById("next-btn");
+const resultEl = document.getElementById("result");
+const scoreEl = document.getElementById("score");
 
-  q.choices.forEach((choice, index) => {
+function mostrarPergunta() {
+  const p = perguntas[perguntaAtual];
+  questionEl.textContent = p.pergunta;
+  optionsEl.innerHTML = "";
+
+  p.opcoes.forEach((opcao, index) => {
     const btn = document.createElement("button");
-    btn.textContent = choice.text;
-    btn.onclick = () => handleChoice(choice.score);
-    choicesDiv.appendChild(btn);
+    btn.textContent = opcao;
+    btn.onclick = () => selecionarOpcao(btn, index);
+    optionsEl.appendChild(btn);
   });
+
+  nextBtn.disabled = true;
 }
 
-function handleChoice(scoreChange) {
-  score += scoreChange;
-  const feedback = document.getElementById("feedback");
-  if (scoreChange === 1) {
-    feedback.textContent = "Boa escolha! Você está salvando vidas.";
-    feedback.style.color = "green";
-  } else if (scoreChange === -1) {
-    feedback.textContent = "Essa atitude pode colocar a vítima em risco.";
-    feedback.style.color = "red";
-  } else {
-    feedback.textContent = "Você poderia ter feito mais.";
-    feedback.style.color = "orange";
+function selecionarOpcao(botao, index) {
+  const botoes = optionsEl.querySelectorAll("button");
+  botoes.forEach(b => b.classList.remove("selected"));
+  botao.classList.add("selected");
+  selecionada = index;
+  nextBtn.disabled = false;
+}
+
+nextBtn.onclick = () => {
+  if (selecionada === perguntas[perguntaAtual].correta) {
+    pontuacao++;
   }
 
-  document.getElementById("score").textContent = `Pontuação: ${score}`;
-  document.getElementById("next-button").style.display = "block";
-  document.querySelectorAll("#choices button").forEach(btn => btn.disabled = true);
-}
+  perguntaAtual++;
+  selecionada = null;
 
-function nextQuestion() {
-  currentQuestion++;
-  if (currentQuestion < questions.length) {
-    showQuestion();
+  if (perguntaAtual < perguntas.length) {
+    mostrarPergunta();
   } else {
-    document.getElementById("question-text").textContent = "Fim do jogo. Obrigado por participar!";
-    document.getElementById("choices").innerHTML = "";
-    document.getElementById("next-button").style.display = "none";
+    mostrarResultado();
   }
+};
+
+function mostrarResultado() {
+  document.getElementById("quiz-container").classList.add("hidden");
+  resultEl.classList.remove("hidden");
+  scoreEl.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas.`;
 }
 
-window.onload = showQuestion;
+function restartQuiz() {
+  perguntaAtual = 0;
+  pontuacao = 0;
+  selecionada = null;
+  resultEl.classList.add("hidden");
+  document.getElementById("quiz-container").classList.remove("hidden");
+  mostrarPergunta();
+}
+
+mostrarPergunta();
