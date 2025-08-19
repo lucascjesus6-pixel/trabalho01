@@ -1,3 +1,4 @@
+// 👉 1. Lista de perguntas
 const perguntas = [
   {
     pergunta: "1. Um parceiro controla com quem a mulher fala, onde vai e até o que veste. Qual tipo de violência é essa?",
@@ -76,6 +77,7 @@ const perguntas = [
   }
 ];
 
+// 👉 2. Variáveis e elementos HTML
 let perguntaAtual = 0;
 let pontuacao = 0;
 let selecionada = null;
@@ -86,6 +88,15 @@ const nextBtn = document.getElementById("next-btn");
 const resultEl = document.getElementById("result");
 const scoreEl = document.getElementById("score");
 
+// 👉 3. Embaralhar array de perguntas
+function embaralharArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// 👉 4. Mostrar pergunta
 function mostrarPergunta() {
   const p = perguntas[perguntaAtual];
   questionEl.textContent = p.pergunta;
@@ -101,6 +112,7 @@ function mostrarPergunta() {
   nextBtn.disabled = true;
 }
 
+// 👉 5. Selecionar opção
 function selecionarOpcao(botao, index) {
   const botoes = optionsEl.querySelectorAll("button");
   botoes.forEach(b => b.classList.remove("selected"));
@@ -109,6 +121,7 @@ function selecionarOpcao(botao, index) {
   nextBtn.disabled = false;
 }
 
+// 👉 6. Clique no botão "Próxima"
 nextBtn.onclick = () => {
   if (selecionada === perguntas[perguntaAtual].correta) {
     pontuacao++;
@@ -124,19 +137,24 @@ nextBtn.onclick = () => {
   }
 };
 
+// 👉 7. Mostrar resultado final
 function mostrarResultado() {
   document.getElementById("quiz-container").classList.add("hidden");
   resultEl.classList.remove("hidden");
   scoreEl.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas.`;
 }
 
+// 👉 8. Recomeçar quiz
 function restartQuiz() {
   perguntaAtual = 0;
   pontuacao = 0;
   selecionada = null;
   resultEl.classList.add("hidden");
   document.getElementById("quiz-container").classList.remove("hidden");
+  embaralharArray(perguntas); // embaralhar novamente
   mostrarPergunta();
 }
 
+// 👉 9. Iniciar quiz embaralhando as perguntas
+embaralharArray(perguntas);
 mostrarPergunta();
