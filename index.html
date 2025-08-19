@@ -1,13 +1,22 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quebrando o Silêncio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Bem-vindo ao jogo de conscientização</h1>
-  <p>Este é um projeto para ajudar a identificar e combater a violência contra a mulher.</p>
+  <div class="container">
+    <h1>Quebrando o Silêncio</h1>
+    <p id="story">Você é amiga de uma mulher que começa a mostrar sinais de estar em um relacionamento abusivo. O que você faz?</p>
+    
+    <div id="choices">
+      <button onclick="nextPart('conversar')">Conversar com ela</button>
+      <button onclick="nextPart('ignorar')">Ignorar e esperar ela falar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
-
